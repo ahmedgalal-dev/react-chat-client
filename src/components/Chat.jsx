@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import WebSocket from "ws";
 const username = "User" + Math.floor(Math.random() * 1000);
 
 const Chat = () => {
@@ -8,9 +8,11 @@ const Chat = () => {
     const [input, setInput] = useState("");
 
     useEffect(() => {
-        const ws = new WebSocket("wss://chat-server-1emetgonw-galals-projects-dbc56a6d.vercel.app:5000",{headers:{
-            "user-agent": "mozilla"
-        }});
+        const ws = new WebSocket("wss://chat-server-1emetgonw-galals-projects-dbc56a6d.vercel.app",{
+            headers:{
+                "user-agent":"mozilla"
+            }
+        });
         setSocket(ws);
 
         ws.onmessage = async (event) => {
