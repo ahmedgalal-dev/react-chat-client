@@ -8,7 +8,9 @@ const Chat = () => {
     const [input, setInput] = useState("");
 
     useEffect(() => {
-        const ws = new WebSocket("wss://chat-server-1emetgonw-galals-projects-dbc56a6d.vercel.app:5000");
+        const ws = new WebSocket("wss://chat-server-1emetgonw-galals-projects-dbc56a6d.vercel.app:5000",{headers:{
+            "user-agent": "mozilla"
+        }});
         setSocket(ws);
 
         ws.onmessage = async (event) => {
