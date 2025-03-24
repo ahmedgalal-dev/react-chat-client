@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import WebSocket from "ws";
 const username = "User" + Math.floor(Math.random() * 1000);
 
 const Chat = () => {
