@@ -39,31 +39,32 @@ const Chat = () => {
 
                 </div>
                 <div className="w-10/12  flex flex-col gap-2 rounded-md p-1">
-                    {(messages.length === 0) ? <p className="bg-transparent text-center text-white p-5 w-full">Messages will appear here</p> :
-                        messages.map((msg, index) => (
-                            <div key={index} className={`text-${msg.username === username ? `left` : `right`}`}>
-                                <strong key={index + 1} className="text-white">
+                    {(messages.length === 0) ?
+                        <p className="bg-transparent text-center text-white p-5 w-full">No messages yet, start the conversation</p>
+                        : messages.map((msg, index) => (
+                            <div key={index} className={`text-white text-${msg.username === username ? `left` : `right`}`}>
+                                <strong key={index + 1}>
                                     {msg.username === username ? `me` : msg.username}
                                 </strong>
                                 <p
                                     className="bg-zinc-700 text-white break-words w-full p-2 rounded-md"
                                     key={index + 2}>{msg.input}
                                 </p>
-
                             </div>
                         ))}
 
                 </div>
             </div>
-            <div className="shadow-md bg-zinc-700 p-2 mb-1 rounded-lg shadow-gray-70 fixed bottom-0 w-10/12">
+            <div className="flex flex-row shadow-md bg-zinc-700 p-2 mb-1 rounded-lg shadow-gray-70 fixed bottom-2 w-10/12">
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Type a message..."
-                    className="bg-transparent flex-grow w-full text-white"
+                    className="bg-transparent flex-grow w-full text-white  outline-none"
                     onKeyDown={(e) => { if (e.key === "Enter") sendMessage() }}
                 />
+                <button className="p-2 ml-1 bg-zinc-800 text-white rounded-md hover:border-transparent" onClick={sendMessage}>Send</button>
             </div>
         </div >
     );
