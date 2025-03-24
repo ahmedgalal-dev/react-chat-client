@@ -38,18 +38,22 @@ const Chat = () => {
                     </h1>
 
                 </div>
-                <div className="w-10/12  flex flex-col gap-2 rounded-md p-1">
+                <div className="w-10/12  flex flex-col gap-2 justify-end rounded-md p-1">
                     {(messages.length === 0) ?
                         <p className="bg-transparent text-center text-white p-5 w-full">No messages yet, start the conversation</p>
                         : messages.map((msg, index) => (
-                            <div key={index} className={`text-white text-${msg.username === username ? `left` : `right`}`}>
-                                <strong key={index + 1}>
-                                    {msg.username === username ? `me` : msg.username}
-                                </strong>
-                                <p
-                                    className="bg-zinc-700 text-white break-words w-full p-2 rounded-md"
-                                    key={index + 2}>{msg.input}
-                                </p>
+                            <div key={index} className={`flex ${msg.username === username ? "justify-start" : "justify-end"} text-white`}>
+                                <div className="flex flex-col w-full ">
+                                    <strong key={index + 1} className={`${msg.username === username ? "text-left" : "text-right"}`}>
+                                        {msg.username === username ? `me` : msg.username}
+                                    </strong>
+                                    <div className={`${msg.username === username ? "text-left" : "text-right"}`}>
+                                        <p
+                                            className="bg-zinc-700 text-white break-words w-full p-2 rounded-md"
+                                            key={index + 2}>{msg.input}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         ))}
 
